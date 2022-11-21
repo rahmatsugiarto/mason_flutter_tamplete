@@ -2,14 +2,12 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 class ApiInterceptors extends Interceptor {
   // final SharedPreferences sharedPreferences;
 
   // ApiInterceptors({required this.sharedPreferences});
-
-  //if you debug this project set isDebug true, and set isDebug false for release this project
-  final isDebug = true;
 
   // Map<String, dynamic> _defaultHeader() {
   // String? authorizationToken = sharedPreferences.getString(
@@ -26,7 +24,7 @@ class ApiInterceptors extends Interceptor {
     try {
       // options.headers.addAll(_defaultHeader());
 
-      if (isDebug) {
+      if (kDebugMode) {
         final requestBody =
             const JsonEncoder.withIndent('  ').convert(options.data);
         final queryParameters =
@@ -46,7 +44,7 @@ class ApiInterceptors extends Interceptor {
 
       return handler.next(options);
     } catch (e) {
-      if (isDebug) {
+      if (kDebugMode) {
         final queryParameters =
             const JsonEncoder.withIndent('  ').convert(options.queryParameters);
         log(
@@ -67,7 +65,7 @@ class ApiInterceptors extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    if (isDebug) {
+    if (kDebugMode) {
       final prettyString =
           const JsonEncoder.withIndent('  ').convert(response.data);
       log(
