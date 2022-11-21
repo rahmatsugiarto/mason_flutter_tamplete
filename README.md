@@ -22,6 +22,7 @@ Step for run this bricks
 3. open terminal
 4. $ mason get
 5. $ mason add -g ca_starter --path bricks/ca_starter
+7. Open your project that you want to insert
 6. $ mason make ca_starter
 7. done
 
