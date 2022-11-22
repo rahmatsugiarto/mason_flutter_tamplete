@@ -1,5 +1,5 @@
-import 'package:example_clean_architecture/app.dart';
-import 'package:example_clean_architecture/presentation/bloc/home_bloc/home_cubit.dart';
+import 'app.dart';
+import 'presentation/bloc/home_bloc/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,7 +1,8 @@
-import 'package:example_clean_architecture/presentation/pages/home_screen.dart';
-import 'package:example_clean_architecture/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'presentation/pages/home_screen.dart';
+import 'router.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

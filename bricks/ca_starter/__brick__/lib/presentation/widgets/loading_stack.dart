@@ -1,5 +1,6 @@
-import 'custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
+
+import 'custom_circular_progress_indicator.dart';
 
 class LoadingStack extends StatelessWidget {
   final bool isLoading;
