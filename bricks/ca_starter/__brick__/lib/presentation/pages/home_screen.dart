@@ -1,3 +1,4 @@
+import '../../common/constants/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,19 +30,23 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(state.homeState.message),
-                  Text(state.homeState.failure?.errorMessage??""),
+                  Text(state.homeState.failure?.errorMessage ?? ""),
                 ],
               ),
             );
           } else if (status.isHasData) {
-            return SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(data.number.toString()),
-                  Text(data.text),
-                ],
+            return InkWell(
+              onTap: () => Navigator.pushNamed(context, AppRoutes.secondScreen),
+              child: SizedBox(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(data.number.toString()),
+                    Text(data.text),
+                  ],
+                ),
               ),
             );
           } else {

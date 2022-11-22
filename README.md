@@ -17,14 +17,15 @@ This is a starting point for a new brick:
 
 
 Step for run this bricks
-1. install mason CLI at your terminal
-2. clone this project and open
-3. open terminal
-4. $ mason get
-5. $ mason add -g ca_starter --path bricks/ca_starter
+1. add package dartz, dio, flutter_bloc, flutter_screenutil and get_it
+2. install mason CLI at your terminal
+3. clone this project and open
+4. open terminal
+5. $ mason get
+6. $ mason add -g ca_starter --path bricks/ca_starter
 7. Open your project that you want to insert
-6. $ mason make ca_starter
-7. done
+8. $ mason make ca_starter
+9. done
 
 [1]: https://github.com/felangel/mason
 [2]: https://github.com/felangel/mason/tree/master/packages/mason_cli#readme
