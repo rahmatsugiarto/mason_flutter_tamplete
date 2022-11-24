@@ -1,5 +1,5 @@
-name: ca_starter
-description: Generate starter project with Clean Architecture
+name: ca_bloc
+description: Generate a new Bloc in Dart. Built for the bloc state management library.
 
 # The following defines the version and build number for your brick.
 # A version number is three numbers separated by dots, like 1.2.34
@@ -20,9 +20,9 @@ environment:
 #  * an optional list of default values (array only)
 #  * an optional prompt phrase used when asking for the variable
 #  * a list of values (enums only)
-# vars:
-#   name:
-#     type: string
-#     description: Your name
-#     default: Dash
-#     prompt: What is your name?
+vars:
+  name:
+    type: string
+    description: The name of the bloc class.
+    default: counter
+    prompt: What is the bloc name?

@@ -4,6 +4,12 @@ bricks:
   ca_starter:
     path:
       bricks/ca_starter
+  ca_bloc:
+    path:
+      bricks/ca_bloc
+  ca_cubit:
+    path:
+      bricks/ca_cubit
   # Bricks can also be imported via git url.
   # Uncomment the following lines to import
   # a brick from a remote git url.
