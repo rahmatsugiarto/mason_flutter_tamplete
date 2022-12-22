@@ -1,4 +1,4 @@
-import '../../common/resources/colors.dart';
+import 'package:example_clean_architecture/common/resources/colors.gen.dart';
 import 'package:flutter/material.dart';
 
 class CustomCircularProgressIndicator extends StatelessWidget {
@@ -7,9 +7,9 @@ class CustomCircularProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const CircularProgressIndicator(
-      backgroundColor: AppColor.lightBlue,
+      backgroundColor: ColorName.lightBlue,
       valueColor: AlwaysStoppedAnimation<Color>(
-        AppColor.babyBlue,
+        ColorName.babyBlue,
       ),
     );
   }

@@ -23,7 +23,7 @@ Step for run this bricks
 4. "$ mason get"
 5. "$ mason add -g ca_starter --path bricks/ca_starter"
 6. Open your project that you want to insert template
-7. Add package dartz, dio, flutter_bloc and get_it at your pubspec.ymml
+7. Set pubspec.ymml like at pub.txt
 8. Run this in your project folder using terminal "$ mason make ca_starter"
 9. DONE
 
