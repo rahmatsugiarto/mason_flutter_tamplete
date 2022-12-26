@@ -1,0 +1,23 @@
+# Generate shared resource image, color and font
+# For Generate command at terminal 'fluttergen -c pubspec.yaml'
+flutter_gen:
+  output: lib/common/resources
+  assets:
+    enabled: true
+    outputs:
+      class_name: Assets
+      package_parameter_enabled: true
+      style: snake-case
+
+  # integrations:
+  #   flutter_svg: true
+
+  colors: 
+    inputs:
+      - assets/color/main_color.xml
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/images/

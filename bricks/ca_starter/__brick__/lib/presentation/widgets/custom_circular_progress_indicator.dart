@@ -1,4 +1,4 @@
-import 'package:example_clean_architecture/common/resources/colors.gen.dart';
+import '../../common/resources/colors.gen.dart';
 import 'package:flutter/material.dart';
 
 class CustomCircularProgressIndicator extends StatelessWidget {

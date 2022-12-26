@@ -1,9 +1,9 @@
-import 'app.dart';
-import 'presentation/bloc/home_bloc/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'app.dart';
 import 'injection_container.dart' as di;
+import 'presentation/bloc/home_bloc/home_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,5 +1,8 @@
 import 'dart:io';
+
 import 'package:mason/mason.dart';
+
+import 'install_dependencies.dart';
 
 /**
  * Deletes all .gitkeep files inside of generated folder
@@ -10,7 +13,11 @@ Future<void> run(HookContext context) async {
   var dir = Directory('.');
   removeFiles(dir).listen((event) {
     context.logger.info(event);
-  }, onDone: () => filesRemoved.complete('DONE... Tamplete by: Rahmat Sugiarto'));
+  }, onDone: () {
+    filesRemoved.complete('DONE Clear file .gitKeep');
+    InstallDependencies.installAllDependencies(context);
+    context.logger.success('Tamplete by: Rahmat Sugiarto');
+  });
 }
 
 Stream<String> removeFiles(Directory dir) async* {
