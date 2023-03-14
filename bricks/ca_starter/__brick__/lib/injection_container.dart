@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import 'common/network/dio_handler.dart';
-import 'data/datasource/remote/remote_datasource.dart';
-import 'data/repositories/number_trivia_repository_impl.dart';
-import 'domain/repositories/number_trivia_repository.dart';
+import 'data/datasources/remote/remote_datasource.dart';
+import 'data/repositories/repository_impl.dart';
+import 'domain/repositories/repository.dart';
 import 'domain/usecases/get_random_usecase.dart';
 import 'presentation/bloc/home_bloc/home_cubit.dart';
 
@@ -19,10 +19,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetRandomUseCase(sl()));
 
   // //! Repository
-  sl.registerLazySingleton<NumberTriviaRepository>(
-      () => NumberTriviaRepositoryImpl(
-            remoteDataSource: sl(),
-          ));
+  sl.registerLazySingleton<Repository>(() => RepositoryImpl(
+        remoteDataSource: sl(),
+      ));
 
   // //! Data Source
   sl.registerLazySingleton<RemoteDataSource>(

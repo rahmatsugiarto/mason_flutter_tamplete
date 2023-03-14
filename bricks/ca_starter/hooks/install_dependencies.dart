@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:mason/mason.dart';
 
 class InstallDependencies {
+  static final errorAlready = "is already in";
   static Future<void> installAllDependencies(HookContext context) async {
     await _addGetIt(context);
     await _addFlutterBloc(context);
@@ -10,6 +11,7 @@ class InstallDependencies {
     await _addDio(context);
     await _addBuildRunner(context);
     await _addFlutterGen(context);
+    await _addSmartDialog(context);
   }
 
   static Future<void> _addGetIt(HookContext context) async {
@@ -19,7 +21,11 @@ class InstallDependencies {
     if (cmdGetIt.exitCode == 0) {
       installDone.complete('DONE Installing get_it!');
     } else {
-      installDone.fail(cmdGetIt.stderr);
+      if (cmdGetIt.stderr.toString().contains(errorAlready)) {
+        installDone.complete(cmdGetIt.stderr);
+      } else {
+        installDone.fail(cmdGetIt.stderr);
+      }
     }
   }
 
@@ -31,7 +37,11 @@ class InstallDependencies {
     if (installFlutterBloc.exitCode == 0) {
       installDone.complete('DONE Installing flutter_bloc!');
     } else {
-      installDone.fail(installFlutterBloc.stderr);
+      if (installFlutterBloc.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installFlutterBloc.stderr);
+      } else {
+        installDone.fail(installFlutterBloc.stderr);
+      }
     }
   }
 
@@ -42,7 +52,11 @@ class InstallDependencies {
     if (installDartz.exitCode == 0) {
       installDone.complete('DONE Installing dartz!');
     } else {
-      installDone.fail(installDartz.stderr);
+      if (installDartz.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installDartz.stderr);
+      } else {
+        installDone.fail(installDartz.stderr);
+      }
     }
   }
 
@@ -53,30 +67,61 @@ class InstallDependencies {
     if (installDio.exitCode == 0) {
       installDone.complete('DONE Installing dio!');
     } else {
-      installDone.fail(installDio.stderr);
+      if (installDio.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installDio.stderr);
+      } else {
+        installDone.fail(installDio.stderr);
+      }
     }
   }
 
   static Future<void> _addBuildRunner(HookContext context) async {
     final installDone = context.logger.progress('INSTALLING build_runner');
-    var installBuildRunner = await Process.run('flutter', ['pub', 'add', 'build_runner']);
+    var installBuildRunner =
+        await Process.run('flutter', ['pub', 'add', 'build_runner']);
 
     if (installBuildRunner.exitCode == 0) {
       installDone.complete('DONE Installing build_runner!');
     } else {
-      installDone.fail(installBuildRunner.stderr);
+      if (installBuildRunner.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installBuildRunner.stderr);
+      } else {
+        installDone.fail(installBuildRunner.stderr);
+      }
     }
   }
 
   static Future<void> _addFlutterGen(HookContext context) async {
-    final installDone = context.logger.progress('INSTALLING flutter_gen_runner');
+    final installDone =
+        context.logger.progress('INSTALLING flutter_gen_runner');
     var installFlutterGen =
         await Process.run('flutter', ['pub', 'add', 'flutter_gen_runner']);
 
     if (installFlutterGen.exitCode == 0) {
       installDone.complete('DONE Installing flutter_gen_runner!');
     } else {
-      installDone.fail(installFlutterGen.stderr);
+      if (installFlutterGen.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installFlutterGen.stderr);
+      } else {
+        installDone.fail(installFlutterGen.stderr);
+      }
+    }
+  }
+
+   static Future<void> _addSmartDialog(HookContext context) async {
+    final installDone =
+        context.logger.progress('INSTALLING flutter_smart_dialog');
+    var installFlutterGen =
+        await Process.run('flutter', ['pub', 'add', 'flutter_smart_dialog']);
+
+    if (installFlutterGen.exitCode == 0) {
+      installDone.complete('DONE Installing flutter_smart_dialog!');
+    } else {
+      if (installFlutterGen.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installFlutterGen.stderr);
+      } else {
+        installDone.fail(installFlutterGen.stderr);
+      }
     }
   }
 }

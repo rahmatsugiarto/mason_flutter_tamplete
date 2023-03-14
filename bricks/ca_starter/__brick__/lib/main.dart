@@ -1,7 +1,8 @@
+import 'package:example_clean_architecture/presentation/pages/home_screen.dart';
+import 'package:example_clean_architecture/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'app.dart';
 import 'injection_container.dart' as di;
 import 'presentation/bloc/home_bloc/home_cubit.dart';
 
@@ -23,7 +24,15 @@ class MyApp extends StatelessWidget {
               HomeCubit(getRandomUseCase: di.sl())..getNumberTriviaRandom(),
         ),
       ],
-      child: const App(),
+      child: MaterialApp(
+        title: 'Starter',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const HomeScreen(),
+        onGenerateRoute: generateRoute,
+      ),
     );
   }
 }

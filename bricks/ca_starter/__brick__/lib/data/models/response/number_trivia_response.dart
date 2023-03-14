@@ -1,5 +1,3 @@
-import '../../../domain/entities/number_trivia_entity.dart';
-
 class NumberTriviaResponse {
   String? text;
   int? number;
@@ -13,12 +11,5 @@ class NumberTriviaResponse {
     number = json['number'];
     found = json['found'];
     type = json['type'];
-  }
-
-  NumberTriviaEntity toEntity() {
-    return NumberTriviaEntity(
-      number: number ?? 0,
-      text: text ?? "",
-    );
   }
 }

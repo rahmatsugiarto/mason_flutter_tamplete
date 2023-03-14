@@ -1,7 +1,7 @@
-import '../../common/constants/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../common/constants/app_routes.dart';
 import '../../common/state/view_data_state.dart';
 import '../../domain/entities/number_trivia_entity.dart';
 import '../bloc/home_bloc/home_cubit.dart';
@@ -54,29 +54,6 @@ class HomeScreen extends StatelessWidget {
           }
         },
       ),
-      // body: BlocConsumer<HomeCubit, HomeState>(
-      //   listener: (context, state) {
-      //     // TODO: implement listener
-      //   },
-      //   builder: (context, state) {
-      //     final status = state.homeState.status;
-      //     final data = state.homeState.data ?? const NumberTriviaEntity();
-      //     return LoadingStack(
-      //       isLoading: status.isLoading,
-      //       widget: Center(
-      //         child: SizedBox(
-      //           height: MediaQuery.of(context).size.height,
-      //           child: Column(
-      //             children: [
-      //               Text(data.number.toString()),
-      //               Text(data.text),
-      //             ],
-      //           ),
-      //         ),
-      //       ),
-      //     );
-      //   },
-      // ),
     );
   }
 }
