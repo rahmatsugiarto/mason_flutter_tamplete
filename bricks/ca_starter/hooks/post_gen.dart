@@ -15,8 +15,9 @@ Future<void> run(HookContext context) async {
     context.logger.info(event);
   }, onDone: () {
     filesRemoved.complete('DONE Clear file .gitKeep');
-    InstallDependencies.installAllDependencies(context);
-    context.logger.success('Tamplete by: Rahmat Sugiarto');
+    InstallDependencies.installAllDependencies(context).then((_) {
+      context.logger.success('Tamplete by: Rahmat Sugiarto');
+    });
   });
 }
 
