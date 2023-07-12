@@ -1,10 +1,10 @@
-import 'presentation/pages/home_screen.dart';
-import 'router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'injection_container.dart' as di;
 import 'presentation/bloc/home_bloc/home_cubit.dart';
+import 'presentation/pages/home_screen.dart';
+import 'router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

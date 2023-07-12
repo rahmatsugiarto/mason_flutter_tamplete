@@ -23,7 +23,7 @@ class RepositoryImpl implements Repository {
       final response = await remoteDataSource.getRandomNumberTrivia();
       final mapper = NumberTriviaMapper();
       return Right(mapper.mapNumberTriviaToEntity(response));
-    } on DioError catch (error) {
+    } on DioException catch (error) {
       if (error.isNoConnectionError) {
         return Left(
           ConnectionFailure(AppConstants.errorMessage.noInternet),

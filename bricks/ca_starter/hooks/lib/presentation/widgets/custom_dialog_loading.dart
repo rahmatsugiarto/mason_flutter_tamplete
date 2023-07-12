@@ -15,9 +15,9 @@ class CustomDialogLoading {
                 Radius.circular(20),
               ),
             ),
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 CustomCircularProgressIndicator(),
                 SizedBox(height: 10.0),
                 Text(

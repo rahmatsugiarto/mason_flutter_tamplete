@@ -78,7 +78,7 @@ class ApiInterceptors extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     log('Dio Error : $err, ${err.response}');
     return handler.next(err);
   }
