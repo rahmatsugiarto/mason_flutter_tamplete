@@ -124,4 +124,20 @@ class InstallDependencies {
       }
     }
   }
+   static Future<void> _addLogger(HookContext context) async {
+    final installDone =
+        context.logger.progress('INSTALLING logger');
+    var installFlutterGen =
+        await Process.run('flutter', ['pub', 'add', 'logger']);
+
+    if (installFlutterGen.exitCode == 0) {
+      installDone.complete('DONE Installing logger!');
+    } else {
+      if (installFlutterGen.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installFlutterGen.stderr);
+      } else {
+        installDone.fail(installFlutterGen.stderr);
+      }
+    }
+  }
 }
