@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-import 'common/network/dio_handler.dart';
+import 'core/network/dio_handler.dart';
 import 'data/datasources/remote/remote_datasource.dart';
 import 'data/repositories/repository_impl.dart';
 import 'domain/repositories/repository.dart';
@@ -33,3 +33,4 @@ Future<void> init() async {
   sl.registerLazySingleton<Dio>(() => sl<DioHandler>().dio);
   sl.registerLazySingleton<DioHandler>(() => DioHandler(apiBaseUrl: ''));
 }
+

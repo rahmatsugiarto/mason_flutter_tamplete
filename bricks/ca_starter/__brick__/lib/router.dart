@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'common/constants/app_routes.dart';
+import 'core/constants/app_routes.dart';
 import 'presentation/pages/home_screen.dart';
 import 'presentation/pages/second_screen.dart';
 

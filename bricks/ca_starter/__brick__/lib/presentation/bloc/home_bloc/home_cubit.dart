@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../common/state/view_data_state.dart';
+import '../../../core/state/view_data_state.dart';
 import '../../../domain/usecases/get_random_usecase.dart';
 import 'home_state.dart';
 
@@ -16,6 +16,7 @@ class HomeCubit extends Cubit<HomeState> {
         homeState: ViewData.loading(),
       ),
     );
+
     final result = await getRandomUseCase.execute();
     result.fold(
       (failure) => emit(

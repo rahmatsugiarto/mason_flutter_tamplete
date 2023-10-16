@@ -1,15 +1,26 @@
+import '../widgets/custom_dialog_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../common/constants/app_routes.dart';
-import '../../common/state/view_data_state.dart';
+import '../../core/state/view_data_state.dart';
 import '../../domain/entities/number_trivia_entity.dart';
 import '../bloc/home_bloc/home_cubit.dart';
 import '../bloc/home_bloc/home_state.dart';
 import '../widgets/custom_circular_progress_indicator.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeCubit>().getNumberTriviaRandom();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +28,18 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Project Starter Flutter"),
       ),
-      body: BlocBuilder<HomeCubit, HomeState>(
+      body: BlocConsumer<HomeCubit, HomeState>(
+        listener: (context, state) {
+          final status = state.homeState.status;
+
+          if (status.isLoading) {
+            CustomDialogLoading.show();
+          }
+
+          if (status.isHasData || status.isError) {
+            CustomDialogLoading.dismiss();
+          }
+        },
         builder: (context, state) {
           final status = state.homeState.status;
           final data = state.homeState.data ?? const NumberTriviaEntity();
@@ -36,7 +58,8 @@ class HomeScreen extends StatelessWidget {
             );
           } else if (status.isHasData) {
             return InkWell(
-              onTap: () => Navigator.pushNamed(context, AppRoutes.secondScreen),
+              // onTap: () => Navigator.pushNamed(context, AppRoutes.secondScreen),
+              onTap: () => context.read<HomeCubit>().getNumberTriviaRandom(),
               child: SizedBox(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height,

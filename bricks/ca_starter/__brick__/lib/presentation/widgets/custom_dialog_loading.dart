@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
+import '../../core/constants/app_constants.dart';
 import 'custom_circular_progress_indicator.dart';
 
 class CustomDialogLoading {
-  static void show() => SmartDialog.showLoading(
+  static void show() => SmartDialog.show(
+        keepSingle: true,
+        animationType: SmartAnimationType.fade,
+        tag: AppConstants.tagDialog.tagDialogLoading,
         builder: (context) {
           return Container(
             height: 100,
@@ -22,6 +26,9 @@ class CustomDialogLoading {
                 SizedBox(height: 10.0),
                 Text(
                   "Loading",
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
                 ),
               ],
             ),
@@ -29,5 +36,7 @@ class CustomDialogLoading {
         },
       );
 
-  static void dismiss() => SmartDialog.dismiss();
+  static void dismiss() => SmartDialog.dismiss(
+        tag: AppConstants.tagDialog.tagDialogLoading,
+      );
 }

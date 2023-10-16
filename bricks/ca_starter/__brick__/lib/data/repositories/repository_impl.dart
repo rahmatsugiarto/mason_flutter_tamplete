@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-import '../../common/constants/app_constants.dart';
-import '../../common/error/failure_response.dart';
-import '../../common/utils/extension.dart';
+import '../../core/constants/app_constants.dart';
+import '../../core/error/failure_response.dart';
+import '../../core/utils/extension.dart';
 import '../../domain/entities/number_trivia_entity.dart';
 import '../../domain/repositories/repository.dart';
 import '../datasources/remote/remote_datasource.dart';

@@ -1,4 +1,4 @@
-import '../../../common/state/view_data_state.dart';
+import '../../../core/state/view_data_state.dart';
 import '../../../domain/entities/number_trivia_entity.dart';
 
 class HomeState {

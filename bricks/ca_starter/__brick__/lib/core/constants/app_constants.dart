@@ -5,6 +5,7 @@ class AppConstants {
   static AppApi appApi = const AppApi();
   static ErrorKey errorKey = const ErrorKey();
   static ErrorMessage errorMessage = const ErrorMessage();
+  static TagDialog tagDialog = const TagDialog();
 }
 
 class CachedKey {
@@ -36,4 +37,11 @@ class ErrorMessage {
   String get noInternet => "Can't connect, please check your connection";
 
   String get errorCommon => "Opss.. Sorry, Something went wrong";
+}
+
+class TagDialog {
+  const TagDialog();
+
+  String get tagDialogLoading => "tag_dialog_loading";
+
 }

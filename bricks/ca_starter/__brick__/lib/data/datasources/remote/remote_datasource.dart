@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../../common/constants/app_constants.dart';
+import '../../../core/constants/app_constants.dart';
 import '../../models/response/number_trivia_response.dart';
 
 abstract class RemoteDataSource {

@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import '../utils/log.dart';
 import 'package:flutter/foundation.dart';
 
 class ApiInterceptors extends Interceptor {
@@ -29,7 +29,7 @@ class ApiInterceptors extends Interceptor {
             const JsonEncoder.withIndent('  ').convert(options.data);
         final queryParameters =
             const JsonEncoder.withIndent('  ').convert(options.queryParameters);
-        log(
+        Log.i(
           'Request URL : ${options.uri}\n'
           '----------------------------------------------------------------------\n'
           'Header: ${options.headers}\n'
@@ -47,7 +47,7 @@ class ApiInterceptors extends Interceptor {
       if (kDebugMode) {
         final queryParameters =
             const JsonEncoder.withIndent('  ').convert(options.queryParameters);
-        log(
+        Log.i(
           'Request URL : ${options.uri}\n'
           '----------------------------------------------------------------------\n'
           'Header: ${options.headers}\n'
@@ -68,7 +68,7 @@ class ApiInterceptors extends Interceptor {
     if (kDebugMode) {
       final prettyString =
           const JsonEncoder.withIndent('  ').convert(response.data);
-      log(
+      Log.i(
         'Status Code: ${response.statusCode}\n'
         '——————————————————————————————————————————————————————————————————————\n'
         'Response : $prettyString\n',
@@ -79,7 +79,7 @@ class ApiInterceptors extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    log('Dio Error : $err, ${err.response}');
+    Log.i('Dio Error : $err, ${err.response}');
     return handler.next(err);
   }
 }
