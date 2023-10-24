@@ -12,6 +12,9 @@ class InstallDependencies {
     await _addBuildRunner(context);
     await _addFlutterGen(context);
     await _addSmartDialog(context);
+    await _addLogger(context);
+    await _addGoogleFont(context);
+    await _addDioSmartRetry(context);
   }
 
   static Future<void> _addGetIt(HookContext context) async {
@@ -108,7 +111,7 @@ class InstallDependencies {
     }
   }
 
-   static Future<void> _addSmartDialog(HookContext context) async {
+  static Future<void> _addSmartDialog(HookContext context) async {
     final installDone =
         context.logger.progress('INSTALLING flutter_smart_dialog');
     var installFlutterGen =
@@ -124,14 +127,46 @@ class InstallDependencies {
       }
     }
   }
-   static Future<void> _addLogger(HookContext context) async {
-    final installDone =
-        context.logger.progress('INSTALLING logger');
+
+  static Future<void> _addLogger(HookContext context) async {
+    final installDone = context.logger.progress('INSTALLING logger');
     var installFlutterGen =
         await Process.run('flutter', ['pub', 'add', 'logger']);
 
     if (installFlutterGen.exitCode == 0) {
       installDone.complete('DONE Installing logger!');
+    } else {
+      if (installFlutterGen.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installFlutterGen.stderr);
+      } else {
+        installDone.fail(installFlutterGen.stderr);
+      }
+    }
+  }
+
+  static Future<void> _addGoogleFont(HookContext context) async {
+    final installDone = context.logger.progress('INSTALLING google_fonts');
+    var installFlutterGen =
+        await Process.run('flutter', ['pub', 'add', 'google_fonts']);
+
+    if (installFlutterGen.exitCode == 0) {
+      installDone.complete('DONE Installing google_fonts!');
+    } else {
+      if (installFlutterGen.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installFlutterGen.stderr);
+      } else {
+        installDone.fail(installFlutterGen.stderr);
+      }
+    }
+  }
+
+  static Future<void> _addDioSmartRetry(HookContext context) async {
+    final installDone = context.logger.progress('INSTALLING dio_smart_retry');
+    var installFlutterGen =
+        await Process.run('flutter', ['pub', 'add', 'dio_smart_retry']);
+
+    if (installFlutterGen.exitCode == 0) {
+      installDone.complete('DONE Installing dio_smart_retry!');
     } else {
       if (installFlutterGen.stderr.toString().contains(errorAlready)) {
         installDone.complete(installFlutterGen.stderr);
