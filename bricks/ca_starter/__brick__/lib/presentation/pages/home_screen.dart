@@ -1,12 +1,14 @@
-import '../widgets/custom_dialog_loading.dart';
+import '../widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../core/constants/app_routes.dart';
 import '../../core/state/view_data_state.dart';
 import '../../domain/entities/number_trivia_entity.dart';
-import '../bloc/home_bloc/home_cubit.dart';
-import '../bloc/home_bloc/home_state.dart';
+import '../blocs/home_bloc/home_cubit.dart';
+import '../blocs/home_bloc/home_state.dart';
 import '../widgets/custom_circular_progress_indicator.dart';
+import '../widgets/custom_dialog_loading.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -53,13 +55,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(state.homeState.message),
                   Text(state.homeState.failure?.errorMessage ?? ""),
+                  CustomButton(
+                    onPressed: () {
+                      context.read<HomeCubit>().getNumberTriviaRandom();
+                    },
+                    child: const Text("reload"),
+                  ),
                 ],
               ),
             );
           } else if (status.isHasData) {
             return InkWell(
               // onTap: () => Navigator.pushNamed(context, AppRoutes.secondScreen),
-              onTap: () => context.read<HomeCubit>().getNumberTriviaRandom(),
               child: SizedBox(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height,
@@ -68,6 +75,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(data.number.toString()),
                     Text(data.text),
+                    CustomButton(
+                      onPressed: () {
+                        context.read<HomeCubit>().getNumberTriviaRandom();
+                      },
+                      child: const Text("reload"),
+                    ),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    CustomButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.secondScreen);
+                      },
+                      child: const Text(" secodn screen"),
+                    ),
                   ],
                 ),
               ),

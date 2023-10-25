@@ -44,4 +44,6 @@ class TagDialog {
 
   String get tagDialogLoading => "tag_dialog_loading";
 
+  String get tagDialog => "tag_dialog";
+
 }

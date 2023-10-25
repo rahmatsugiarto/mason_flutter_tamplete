@@ -1,10 +1,11 @@
+import 'presentation/widgets/double_back_to_quit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import 'core/utils/log.dart';
 import 'injection_container.dart' as di;
-import 'presentation/bloc/home_bloc/home_cubit.dart';
+import 'presentation/blocs/home_bloc/home_cubit.dart';
 import 'presentation/pages/home_screen.dart';
 import 'router.dart';
 
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: const HomeScreen(),
+        home: const DoubleBackToQuit(child: HomeScreen()),
         onGenerateRoute: generateRoute,
       ),
     );

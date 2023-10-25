@@ -7,6 +7,7 @@ import 'custom_circular_progress_indicator.dart';
 class CustomDialogLoading {
   static void show() => SmartDialog.show(
         keepSingle: true,
+        clickMaskDismiss: false,
         animationType: SmartAnimationType.fade,
         tag: AppConstants.tagDialog.tagDialogLoading,
         builder: (context) {
