@@ -1,7 +1,7 @@
 # Generate shared resource image, color and font
 # For Generate command at terminal 'fluttergen -c pubspec.yaml'
 flutter_gen:
-  output: lib/common/resources
+  output: lib/core/resources
   assets:
     enabled: true
     outputs:

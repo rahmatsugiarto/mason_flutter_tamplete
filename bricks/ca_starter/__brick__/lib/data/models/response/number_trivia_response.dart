@@ -1,6 +1,6 @@
 class NumberTriviaResponse {
   String? text;
-  int? number;
+  num? number;
   bool? found;
   String? type;
 

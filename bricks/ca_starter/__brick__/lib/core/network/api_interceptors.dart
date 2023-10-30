@@ -1,28 +1,31 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import '../utils/log.dart';
+import '../constants/app_constants.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/log.dart';
 
 class ApiInterceptors extends Interceptor {
-  // final SharedPreferences sharedPreferences;
+  final SharedPreferences sharedPreferences;
 
-  // ApiInterceptors({required this.sharedPreferences});
+  ApiInterceptors({required this.sharedPreferences});
 
-  // Map<String, dynamic> _defaultHeader() {
-  // String? authorizationToken = sharedPreferences.getString(
-  //   AppConstants.cachedKey.tokenKey,
-  // );
-  // Map<String, String> headers = {};
-  // headers['Content-Type'] = 'application/json';
-  // headers['Authorization'] = authorizationToken ?? "";
-  // return headers;
-  // }
+  Map<String, dynamic> _defaultHeader() {
+    String? authorizationToken = sharedPreferences.getString(
+      AppConstants.cachedKey.tokenKey,
+    );
+    Map<String, String> headers = {};
+    headers['Content-Type'] = 'application/json';
+    headers['Authorization'] = authorizationToken ?? "";
+    return headers;
+  }
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     try {
-      // options.headers.addAll(_defaultHeader());
+      options.headers.addAll(_defaultHeader());
 
       if (kDebugMode) {
         final requestBody =

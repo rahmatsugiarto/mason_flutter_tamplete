@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../widgets/custom_button.dart';
 import '../widgets/custom_button_outlined.dart';
 import '../widgets/custom_dialog.dart';
 import '../widgets/custom_text_form_field.dart';
-import 'package:flutter/material.dart';
 
 class SecondScreen extends StatefulWidget {
   const SecondScreen({super.key});

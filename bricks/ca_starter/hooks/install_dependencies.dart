@@ -6,15 +6,18 @@ class InstallDependencies {
   static final errorAlready = "is already in";
   static Future<void> installAllDependencies(HookContext context) async {
     await _addGetIt(context);
+    await _addInjectable(context);
+    await _addInjectableGen(context);
     await _addFlutterBloc(context);
     await _addDartz(context);
     await _addDio(context);
+    await _addDioSmartRetry(context);
     await _addBuildRunner(context);
     await _addFlutterGen(context);
     await _addSmartDialog(context);
     await _addLogger(context);
     await _addGoogleFont(context);
-    await _addDioSmartRetry(context);
+    await _addSharedPreferences(context);
   }
 
   static Future<void> _addGetIt(HookContext context) async {
@@ -28,6 +31,39 @@ class InstallDependencies {
         installDone.complete(cmdGetIt.stderr);
       } else {
         installDone.fail(cmdGetIt.stderr);
+      }
+    }
+  }
+
+  static Future<void> _addInjectable(HookContext context) async {
+    final installDone = context.logger.progress('INSTALLING injectable');
+    var installFlutterGen =
+        await Process.run('flutter', ['pub', 'add', 'injectable']);
+
+    if (installFlutterGen.exitCode == 0) {
+      installDone.complete('DONE Installing injectable!');
+    } else {
+      if (installFlutterGen.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installFlutterGen.stderr);
+      } else {
+        installDone.fail(installFlutterGen.stderr);
+      }
+    }
+  }
+
+  static Future<void> _addInjectableGen(HookContext context) async {
+    final installDone =
+        context.logger.progress('INSTALLING injectable_generator');
+    var installFlutterGen = await Process.run(
+        'flutter', ['pub', 'add', '-d', 'injectable_generator']);
+
+    if (installFlutterGen.exitCode == 0) {
+      installDone.complete('DONE Installing injectable_generator!');
+    } else {
+      if (installFlutterGen.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installFlutterGen.stderr);
+      } else {
+        installDone.fail(installFlutterGen.stderr);
       }
     }
   }
@@ -78,10 +114,26 @@ class InstallDependencies {
     }
   }
 
+  static Future<void> _addDioSmartRetry(HookContext context) async {
+    final installDone = context.logger.progress('INSTALLING dio_smart_retry');
+    var installFlutterGen =
+        await Process.run('flutter', ['pub', 'add', 'dio_smart_retry']);
+
+    if (installFlutterGen.exitCode == 0) {
+      installDone.complete('DONE Installing dio_smart_retry!');
+    } else {
+      if (installFlutterGen.stderr.toString().contains(errorAlready)) {
+        installDone.complete(installFlutterGen.stderr);
+      } else {
+        installDone.fail(installFlutterGen.stderr);
+      }
+    }
+  }
+
   static Future<void> _addBuildRunner(HookContext context) async {
     final installDone = context.logger.progress('INSTALLING build_runner');
     var installBuildRunner =
-        await Process.run('flutter', ['pub', 'add', 'build_runner']);
+        await Process.run('flutter', ['pub', 'add', '-d', 'build_runner']);
 
     if (installBuildRunner.exitCode == 0) {
       installDone.complete('DONE Installing build_runner!');
@@ -160,13 +212,14 @@ class InstallDependencies {
     }
   }
 
-  static Future<void> _addDioSmartRetry(HookContext context) async {
-    final installDone = context.logger.progress('INSTALLING dio_smart_retry');
+  static Future<void> _addSharedPreferences(HookContext context) async {
+    final installDone =
+        context.logger.progress('INSTALLING shared_preferences');
     var installFlutterGen =
-        await Process.run('flutter', ['pub', 'add', 'dio_smart_retry']);
+        await Process.run('flutter', ['pub', 'add', 'shared_preferences']);
 
     if (installFlutterGen.exitCode == 0) {
-      installDone.complete('DONE Installing dio_smart_retry!');
+      installDone.complete('DONE Installing shared_preferences!');
     } else {
       if (installFlutterGen.stderr.toString().contains(errorAlready)) {
         installDone.complete(installFlutterGen.stderr);

@@ -1,4 +1,3 @@
-import '../widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,6 +6,7 @@ import '../../core/state/view_data_state.dart';
 import '../../domain/entities/number_trivia_entity.dart';
 import '../blocs/home_bloc/home_cubit.dart';
 import '../blocs/home_bloc/home_state.dart';
+import '../widgets/custom_button.dart';
 import '../widgets/custom_circular_progress_indicator.dart';
 import '../widgets/custom_dialog_loading.dart';
 
@@ -66,7 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           } else if (status.isHasData) {
             return InkWell(
-              // onTap: () => Navigator.pushNamed(context, AppRoutes.secondScreen),
               child: SizedBox(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height,
@@ -88,8 +87,27 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         Navigator.pushNamed(context, AppRoutes.secondScreen);
                       },
-                      child: const Text(" secodn screen"),
+                      child: const Text("second screen"),
                     ),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    CustomButton(
+                      onPressed: () {
+                        context.read<HomeCubit>().getToken();
+                      },
+                      child: const Text("get token"),
+                    ),
+                    CustomButton(
+                      onPressed: () {
+                        context.read<HomeCubit>().clearToken();
+                      },
+                      child: const Text("clear token"),
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(state.token),
                   ],
                 ),
               ),

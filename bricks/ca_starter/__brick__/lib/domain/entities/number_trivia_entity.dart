@@ -1,6 +1,6 @@
 class NumberTriviaEntity {
   final String text;
-  final int number;
+  final num number;
 
   const NumberTriviaEntity({
     this.text = "",

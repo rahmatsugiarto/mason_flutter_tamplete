@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../models/response/number_trivia_response.dart';
@@ -7,6 +8,7 @@ abstract class RemoteDataSource {
   Future<NumberTriviaResponse> getRandomNumberTrivia();
 }
 
+@LazySingleton(as: RemoteDataSource)
 class RemoteDataSourceImpl implements RemoteDataSource {
   final Dio dio;
 

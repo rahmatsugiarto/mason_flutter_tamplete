@@ -1,18 +1,19 @@
-import 'presentation/widgets/double_back_to_quit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
+import 'core/di/service_locator.dart';
 import 'core/utils/log.dart';
-import 'injection_container.dart' as di;
 import 'presentation/blocs/home_bloc/home_cubit.dart';
 import 'presentation/pages/home_screen.dart';
+import 'presentation/widgets/double_back_to_quit.dart';
 import 'router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Log.init();
-  await di.init();
+  await configureDependencies();
+  
   runApp(const MyApp());
 }
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => HomeCubit(getRandomUseCase: di.sl()),
+          create: (context) => getIt<HomeCubit>(),
         ),
       ],
       child: MaterialApp(

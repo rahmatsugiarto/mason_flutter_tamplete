@@ -2,17 +2,18 @@ import 'dart:math' as math;
 
 import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/log.dart';
 import 'api_interceptors.dart';
 
 class DioHandler {
   final String apiBaseUrl;
-  // late SharedPreferences sharedPreferences;
+  late SharedPreferences sharedPreferences;
 
   DioHandler({
     required this.apiBaseUrl,
-    // required this.sharedPreferences,
+    required this.sharedPreferences,
   });
 
   Dio get dio => _getDio();
@@ -41,8 +42,7 @@ class DioHandler {
     );
 
     dio.interceptors.add(retryInterceptor);
-    // dio.interceptors.add(ApiInterceptors(sharedPreferences: sharedPreferences));
-    dio.interceptors.add(ApiInterceptors());
+    dio.interceptors.add(ApiInterceptors(sharedPreferences: sharedPreferences));
 
     return dio;
   }
