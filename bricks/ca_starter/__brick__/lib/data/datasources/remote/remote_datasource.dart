@@ -18,8 +18,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<NumberTriviaResponse> getRandomNumberTrivia() async {
     try {
       final response = await dio.get(
-        "${AppConstants.appApi.baseUrl}${AppConstants.appApi.random}",
-        options: Options(headers: {'Content-Type': 'application/json'}),
+        AppConstants.appApi.random,
+        options: Options(
+          headers: {'Content-Type': 'application/json'},
+        ),
       );
       return NumberTriviaResponse.fromJson(response.data);
     } catch (e) {

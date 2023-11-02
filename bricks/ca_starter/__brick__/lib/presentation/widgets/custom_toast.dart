@@ -1,6 +1,7 @@
-import '../../core/resources/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+
+import '../../core/resources/text_styles.dart';
 
 class CustomToast {
   static showToast({required String message}) => SmartDialog.showToast(

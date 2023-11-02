@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../constants/app_constants.dart';
 import '../network/dio_handler.dart';
 
 @module
@@ -16,7 +17,7 @@ abstract class RegisterModule {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     return DioHandler(
-      apiBaseUrl: "",
+      apiBaseUrl: AppConstants.appApi.baseUrl,
       sharedPreferences: sharedPreferences,
     ).dio;
   }

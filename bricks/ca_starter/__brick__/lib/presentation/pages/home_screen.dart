@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             );
           } else {
-            return const SizedBox();
+            return const SizedBox.shrink();
           }
         },
       ),
